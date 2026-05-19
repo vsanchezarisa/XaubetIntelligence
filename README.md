@@ -50,7 +50,7 @@ Para garantizar la reproducibilidad y no sobrecargar la memoria RAM del sistema,
 
 1. **Clonar el repositorio y entrar en la carpeta de la app:**
    ```bash
-   git clone <tu-url-del-repositorio>
+   git clone https://github.com/vsanchezarisa/gimnasio-predictivo.git
    cd proyecto/app
    ```
 
