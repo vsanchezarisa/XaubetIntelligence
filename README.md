@@ -1,42 +1,43 @@
-# 🏋️‍♂️ Sistema de Predicción de Bajas y Retención Activa (Gym Churn & GenAI)
+# 🏋️‍♂️ Can Xaubet Intelligence: Sistema Predictivo de Retención y GenAI
 
 ## 📌 Descripción del Proyecto
-Este proyecto implementa una solución integral de Inteligencia Artificial y Big Data para un centro deportivo. El objetivo principal es anticipar las posibles bajas de socios (Churn Prediction) a partir de datos demográficos y de comportamiento (accesos diarios) y automatizar estrategias de retención personalizadas mediante IA Generativa.
+Este proyecto es el trabajo final del curso de IA y Big Data. Implementa una solución integral para un centro deportivo con el objetivo de anticipar las posibles bajas de socios (Churn Prediction) a partir de datos demográficos y de comportamiento, y automatizar estrategias de retención personalizadas. 
 
-## ⚙️ Arquitectura de la Solución
+El valor diferencial de esta arquitectura es la integración de un **modelo predictivo (XGBoost)** con un **motor de IA Generativa en local (Ollama - Gemma 2)** a través de una aplicación web interactiva. Esto permite generar campañas persuasivas de rescate garantizando al 100% la privacidad de los datos de los clientes, ya que ninguna información sensible abandona el equipo.
 
-El proyecto está estructurado en 4 fases principales:
+## ⚙️ Arquitectura de la Solución (Pipeline)
 
-1. **Pipeline de Datos (ETL):** - Integración de registros históricos de altas/bajas de 2024 y 2025.
-   - Fusión y procesamiento de logs masivos de accesos diarios mediante `pandas`.
-   - Feature Engineering: Creación de variables de comportamiento (frecuencia, recencia, estacionalidad) descartando perfiles anómalos (pases de 1-5 días).
+El proyecto está estructurado en 5 fases analíticas y una fase de despliegue:
 
-2. **Machine Learning (Predictivo):**
-   - Entrenamiento y validación de modelos de clasificación para predecir la probabilidad de baja.
-   - Comparación de algoritmos y optimización de hiperparámetros buscando maximizar el Recall y F1-Score.
-
-3. **Automatización y Triggers:**
-   - Creación de un entorno simulado de base de datos con usuarios activos.
-   - Implementación de un script automatizado que genera un informe periódico (semanal/mensual) con los usuarios en zona de riesgo.
-
-4. **IA Generativa y Visualización (Prescriptivo):**
-   - Integración de un LLM que consume el informe de riesgo y redacta correos de retención altamente personalizados basados en el perfil y comportamiento de cada socio.
-   - Dashboard interactivo en Power BI para monitorizar el riesgo global de la cartera de clientes.
+1. **ETL y Unificación (Notebooks 01 & 02):** - Integración de registros históricos de altas/bajas y extracción de logs masivos de accesos diarios mediante `pandas`.
+2. **Feature Engineering (Notebook 03):** - Creación de variables de comportamiento clave (frecuencia, recencia, distancia al centro) y consolidación de la Tabla Base Analítica (ABT).
+3. **Machine Learning Predictivo (Notebook 04):**
+   - Entrenamiento, validación y exportación de un modelo `XGBoost` optimizado para detectar usuarios en riesgo crítico de abandono.
+4. **IA Generativa Prescriptiva (Notebook 05):**
+   - Integración con el LLM `gemma2:9b` vía Ollama para redactar correos de retención altamente personalizados según la trayectoria de cada socio.
+5. **Despliegue e Interfaz Web (`app_retencion.py`):**
+   - Plataforma interactiva en Streamlit con tres módulos: simulador de riesgo individual, análisis de bases de datos masivas por lotes y automatizador masivo de emails de rescate.
 
 ## 🛠️ Stack Tecnológico
-* **Lenguaje:** Python
+* **Lenguaje:** Python 3.10+
 * **Procesamiento y Análisis:** Pandas, NumPy
-* **Machine Learning:** Scikit-Learn / XGBoost / LightGBM
-* **Base de Datos:** SQLite / SQLAlchemy (para la simulación del trigger)
-* **IA Generativa:** (API del LLM seleccionado)
-* **Visualización:** Power BI
-* **Gestión y Control:** Jira (Scrum), Git/GitHub
+* **Machine Learning:** Scikit-Learn, XGBoost, Joblib
+* **IA Generativa (Local):** Ollama, framework OpenAI (Python), Gemma 2 (9B)
+* **Frontend / UI:** Streamlit, Plotly (Gráficos interactivos)
+* **Base de Datos & BI:** SQLite, exportaciones en CSV/Excel para Power BI
 
 ## 📂 Estructura del Repositorio
 ```text
-├── data/           # Datasets crudos y procesados (ignorados en git)
-├── notebooks/      # Jupyter Notebooks (EDA, ETL, Modelado)
-├── src/            # Scripts de automatización, triggers y conexión con LLM
-├── dashboard/      # Archivos de Power BI
-├── .gitignore
+├── app/                      # Despliegue de la aplicación web
+│   ├── app_retencion.py      # Código principal de la interfaz Streamlit
+│   ├── requirements.txt      # Dependencias exactas del proyecto
+│   └── modelo_xgboost.pkl    # Modelo predictivo pre-entrenado
+├── notebooks/                # Jupyter Notebooks de experimentación
+│   ├── 01_ETL_Unificacion_Datos.ipynb
+│   ├── 02_ETL_Maestro_Socios.ipynb
+│   ├── 03_Feature_Engineering.ipynb
+│   ├── 04_Preparacion_y_Modelado.ipynb
+│   └── 05_IA_Generativa_Ollama.ipynb
+|   └── 05_IA_Generativa.ipynb   
+├── .gitignore                # Archivos excluidos del control de versiones
 └── README.md
