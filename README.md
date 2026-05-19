@@ -1,4 +1,4 @@
-# 🏋️‍♂️ Can Xaubet Intelligence: Sistema Predictivo de Retención y GenAI
+# 🏋️‍♂️ Xaubet Intelligence: Sistema Predictivo de Retención y GenAI
 
 ## 📌 Descripción del Proyecto
 Este proyecto es el trabajo final del curso de IA y Big Data. Implementa una solución integral para un centro deportivo con el objetivo de anticipar las posibles bajas de socios (Churn Prediction) a partir de datos demográficos y de comportamiento, y automatizar estrategias de retención personalizadas. 
