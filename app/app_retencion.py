@@ -19,7 +19,7 @@ if 'df_resultado_rescate' not in st.session_state:
 
 @st.cache_resource 
 def cargar_modelo():
-    ruta = '../../datos/procesados/modelo_xgboost.pkl'
+    ruta = 'modelo_xgboost.pkl'
     return joblib.load(ruta)
 
 modelo = cargar_modelo()

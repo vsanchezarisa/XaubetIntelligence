@@ -10,3 +10,5 @@ datos/
 *.csv
 *.xlsx
 *.xls
+
+05_IA_Generativa.ipynb
