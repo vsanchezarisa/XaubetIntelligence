@@ -17,6 +17,12 @@ if 'generando' not in st.session_state:
 if 'df_resultado_rescate' not in st.session_state:
     st.session_state.df_resultado_rescate = None
 
+# NUEVO: Estados para el generador individual (Pestaña 1)
+if 'generando_indiv' not in st.session_state:
+    st.session_state.generando_indiv = False
+if 'email_individual' not in st.session_state:
+    st.session_state.email_individual = None
+
 @st.cache_resource 
 def cargar_modelo():
     ruta = 'modelo_xgboost.pkl'
@@ -111,11 +117,11 @@ if nombre_columna_cuota in datos_dict:
 datos_entrada = pd.DataFrame([datos_dict], columns=columnas_esperadas)
 probabilidad_real = modelo.predict_proba(datos_entrada)[0][1] * 100
 
-# --- CREACIÓN DE LAS PESTAÑAS ---
+# --- CREACIÓN DE LOS DIFERENTES MENUS ---
 tab1, tab2, tab3 = st.tabs(["🎯 Simulador Individual", "📂 Carga Masiva", "✉️ Automatización de Rescate"])
 
 # ==========================================
-# PESTAÑA 1: SIMULADOR INDIVIDUAL
+# PESTAÑA 1: SIMULADOR INDIVIDUAL (MODIFICADA 🛠️)
 # ==========================================
 with tab1:
     if probabilidad_real >= 65:
@@ -151,8 +157,38 @@ with tab1:
         st.markdown("### 📝 Plan de Acción:")
         if probabilidad_real >= 65:
             st.error("Se recomienda lanzar una campaña de recuperación inmediata.")
-            if st.button("✨ Generar Email de Rescate", type="primary", disabled=not servidor_online):
-                with st.spinner("Redactando email empático con Gemma 2..."):
+            
+            # Botones de control individual
+            col_b1, col_b2 = st.columns(2)
+            with col_b1:
+                btn_gen_indiv = st.button(
+                    "✨ Generar Email de Rescate", 
+                    type="primary", 
+                    disabled=not servidor_online or st.session_state.generando_indiv,
+                    use_container_width=True
+                )
+            with col_b2:
+                btn_cancel_indiv = st.button(
+                    "🛑 Cancelar", 
+                    type="secondary", 
+                    disabled=not st.session_state.generando_indiv,
+                    use_container_width=True
+                )
+
+            # Lógica de los botones
+            if btn_gen_indiv:
+                st.session_state.generando_indiv = True
+                st.session_state.email_individual = None
+                st.rerun()
+
+            if btn_cancel_indiv:
+                st.session_state.generando_indiv = False
+                st.warning("⚠️ Generación cancelada por el usuario.")
+                st.rerun()
+
+            # Bucle de generación
+            if st.session_state.generando_indiv:
+                with st.spinner(f"Redactando email con tóno {tono_ia} y ofreciendo {regalo_ia}..."):
                     if total_visitas < 10:
                         r_visitas = "Anímale a retomar el impulso inicial. Recuérdale que los comienzos cuestan, pero lo importante es volver a dar el primer paso."
                     elif total_visitas <= 50:
@@ -191,9 +227,21 @@ with tab1:
                             ],
                             temperature=0.5
                         )
-                        st.info(respuesta.choices[0].message.content)
+                        st.session_state.email_individual = respuesta.choices[0].message.content
                     except Exception as e:
-                        st.error(f"Error: {e}")
+                        st.session_state.email_individual = f"Error: {e}"
+                
+                # Una vez generado, cambiamos el estado y recargamos
+                st.session_state.generando_indiv = False
+                st.rerun()
+
+            # Mostrar el correo guardado en el estado de la sesión
+            if st.session_state.email_individual:
+                if "Error:" in st.session_state.email_individual:
+                    st.error(st.session_state.email_individual)
+                else:
+                    st.info(st.session_state.email_individual)
+
         elif probabilidad_real >= 30:
             st.warning("Trato preferencial recomendado en recepción.")
         else:
@@ -249,7 +297,7 @@ with tab2:
                 st.plotly_chart(fig_pie)
 
 # ==========================================
-# PESTAÑA 3: AUTOMATIZACIÓN (MODIFICADA 🛠️)
+# PESTAÑA 3: AUTOMATIZACIÓN 
 # ==========================================
 with tab3:
     st.header("✉️ Generador Masivo de Emails")
