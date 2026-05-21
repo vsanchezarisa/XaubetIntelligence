@@ -25,17 +25,19 @@ El proyecto está estructurado en 5 fases analíticas y una fase de despliegue:
 
 ## 📂 Estructura del Repositorio
 ```text
-├── app/                      # Despliegue de la aplicación web
-│   ├── app_retencion.py      # Código principal de la interfaz Streamlit
-│   ├── requirements.txt      # Dependencias exactas del proyecto
-│   └── modelo_xgboost.pkl    # Modelo predictivo pre-entrenado
-├── notebooks/                # Jupyter Notebooks de experimentación
+├── app/
+│   ├── app_retencion.py
+│   ├── requirements.txt
+│   └── modelo_xgboost.pkl
+├── datos_pruebas/
+│   ├── prueba_carga_usuarios.csv
+├── notebooks/
 │   ├── 01_ETL_Unificacion_Datos.ipynb
 │   ├── 02_ETL_Maestro_Socios.ipynb
 │   ├── 03_Feature_Engineering.ipynb
 │   ├── 04_Preparacion_y_Modelado.ipynb
 │   └── 05_IA_Generativa_Ollama.ipynb
-├── .gitignore                # Archivos excluidos del control de versiones
+├── .gitignore
 └── README.md
 ```
 
