@@ -10,7 +10,7 @@ El valor diferencial de esta arquitectura es la integración de un **modelo pred
 El proyecto está estructurado en 5 fases analíticas y una fase de despliegue:
 
 1. **ETL y Unificación (Notebooks 01 & 02):** Integración de registros históricos de altas/bajas y extracción de logs masivos de accesos diarios mediante `pandas`.
-2. **Feature Engineering (Notebook 03):** Creación de variables de comportamiento clave (frecuencia, recencia, distancia al centro) y consolidación de la Tabla Base Analítica (ABT).
+2. **Feature Engineering (Notebook 03):** Creación de variables de comportamiento clave (frecuencia, recencia, distancia al centro, día favorito) y consolidación de la Tabla Base Analítica (ABT).
 3. **Machine Learning Predictivo (Notebook 04):** Entrenamiento, validación y exportación de un modelo `XGBoost` optimizado para detectar usuarios en riesgo crítico de abandono.
 4. **IA Generativa Prescriptiva (Notebook 05):** Integración con el LLM `gemma2:9b` vía Ollama para redactar correos de retención altamente personalizados según la trayectoria de cada socio.
 5. **Despliegue e Interfaz Web (`app_retencion.py`):** Plataforma interactiva en Streamlit con tres módulos: simulador de riesgo individual, análisis de bases de datos masivas por lotes y automatizador masivo de emails de rescate.
