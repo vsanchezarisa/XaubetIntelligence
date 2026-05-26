@@ -53,7 +53,7 @@ Para garantizar la reproducibilidad y no sobrecargar la memoria RAM del sistema,
 1. **Clonar el repositorio y entrar en la carpeta de la app:**
    ```bash
    git clone https://github.com/vsanchezarisa/XaubetIntelligence.git
-   cd proyecto/XaubetIntelligence
+   cd XaubetIntelligence
    ```
 
 2. **Crear el entorno virtual:**
