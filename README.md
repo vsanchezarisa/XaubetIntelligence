@@ -73,12 +73,12 @@ Para garantizar la reproducibilidad y no sobrecargar la memoria RAM del sistema,
 
 4. **Instalar las dependencias:**
    ```bash
-   pip install -r requirements.txt
+   pip install -r app/requirements.txt
    ```
 
 5. **Ejecutar la plataforma:**
    ```bash
-   streamlit run app_retencion.py
+   streamlit run app/app_retencion.py
    ```
 
 Se abrirá automáticamente una pestaña en tu navegador web (típicamente en `http://localhost:8501`) con la aplicación funcionando.
