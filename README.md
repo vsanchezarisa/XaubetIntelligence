@@ -42,7 +42,7 @@ El proyecto está estructurado en 5 fases analíticas y una fase de despliegue:
 ```
 
 ## 🚀 Cómo ejecutar este proyecto en local
-Para garantizar la reproducibilidad y no sobrecargar la memoria RAM del sistema, la aplicación está configurada para ejecutarse dentro de un Entorno Virtual de Python.
+Para garantizar la reproducibilidad y evitar conflictos entre versiones de librerías, la aplicación está configurada para ejecutarse dentro de un Entorno Virtual de Python.
 
 ### Requisitos previos:
 * Tener Python instalado en el sistema.
