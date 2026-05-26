@@ -81,8 +81,7 @@ Para garantizar la reproducibilidad y no sobrecargar la memoria RAM del sistema,
    streamlit run app/app_retencion.py
    ```
 
-Si es la primera vez que ejecutas la aplicación, te pedira que apretes la tecla Enter antes de comenzar.
-Se abrirá automáticamente una pestaña en tu navegador web (típicamente en `http://localhost:8501`) con la aplicación funcionando.
+💡 Nota: Si es la primera vez que ejecutas Streamlit en tu equipo, la consola te pedirá un correo electrónico. Simplemente presiona la tecla Enter para dejarlo en blanco y saltar ese paso. Se abrirá automáticamente una pestaña en tu navegador web (típicamente en `http://localhost:8501`) con la aplicación funcionando.
 
 ---
 *Proyecto desarrollado como Trabajo Final del curso de IA y Big Data.*
