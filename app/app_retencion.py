@@ -7,6 +7,7 @@ import joblib
 import pandas as pd 
 import numpy as np
 import io 
+import os
 
 # 1. Configuración de la página (Debe ser el primer comando de Streamlit)
 st.set_page_config(page_title="Xaubet Intelligence", page_icon="🏋️‍♂️", layout="wide")
@@ -25,7 +26,10 @@ if 'email_individual' not in st.session_state:
 
 @st.cache_resource 
 def cargar_modelo():
-    ruta = 'modelo_xgboost.pkl'
+    directorio_actual = os.path.dirname(os.path.abspath(__file__))
+    
+    ruta = os.path.join(directorio_actual, 'modelo_xgboost.pkl')
+    
     return joblib.load(ruta)
 
 modelo = cargar_modelo()
