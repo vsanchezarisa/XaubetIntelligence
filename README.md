@@ -81,6 +81,7 @@ Para garantizar la reproducibilidad y no sobrecargar la memoria RAM del sistema,
    streamlit run app/app_retencion.py
    ```
 
+Si es la primera vez que ejecutas la aplicación, te pedira que apretes la tecla Enter antes de comenzar.
 Se abrirá automáticamente una pestaña en tu navegador web (típicamente en `http://localhost:8501`) con la aplicación funcionando.
 
 ---
